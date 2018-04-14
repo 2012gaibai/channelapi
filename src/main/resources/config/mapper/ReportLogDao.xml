@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.channel.api.dao.ReportLogDao">
+
+	<select id="queryAll" resultType="ReportLog">
+		SELECT *
+		FROM report_log
+		ORDER BY report_time DESC
+		limit #{offset},#{limit}
+	</select>
+
+	<insert id="insert" parameterType="ReportLog">
+		INSERT INTO report_log(idfa, adverter_code, app_code, click_id, report_time)
+		VALUES (#{idfa}, #{adverterCode}, #{appCode}, #{clickId}, #{reportTime})
+	</insert>
+
+
+</mapper>
