@@ -51,6 +51,7 @@ CREATE TABLE callback_log(
   `is_finish` TINYINT COMMENT '回调是否成功,0:不成功，1：成功',
   `is_balance` TINYINT COMMENT '是否需要结算,0表示不需要，1表示需要',
   `create_time` DATETIME COMMENT '上报时间',
+  `update_time` DATETIME COMMENT '修改时间',
   PRIMARY KEY (`idfa`,`app_code`)
 )ENGINE=INNODB  DEFAULT CHARSET=utf8 COMMENT='回调记录表';
 

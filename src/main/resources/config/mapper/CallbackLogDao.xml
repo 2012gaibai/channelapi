@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.channel.api.dao.CallbackDao">
+	<resultMap id="callbackLog" type="CallbackLog">
+		<id property="idfa" column="idfa"/>
+		<id property="adverterCode" column="adverter_code"/>
+		<id property="appCode" column="app_code"/>
+		<id property="ip" column="ip"/>
+		<id property="callback" column="callback"/>
+		<id property="clickId" column="click_id"/>
+		<id property="isCall" column="is_call"/>
+		<id property="isFinish" column="is_finish"/>
+		<id property="isBalance" column="is_balance"/>
+		<id property="createTime" column="create_time"/>
+		<id property="updateTime" column="update_time"/>
+	</resultMap>
+
+	<select id="findList" resultType="callbackLog">
+		SELECT *
+		FROM callback_log
+		WHERE create_time >= #{startTime}
+		AND
+		<![CDATA[ create_time < #{endTime}]]>
+		AND is_balance=#{log.isBalance} AND is_call=#{log.isCall}
+		limit #{offset},#{limit}
+	</select>
+	
+	<update id="updateStatus">
+		UPDATE callback_log
+		SET
+		is_call=#{isCall},is_finish=#{isFinish},update_time=#{updateTime}
+		WHERE idfa=#{idfa} AND app_code=#{appCode}
+	</update>
+
+
+
+</mapper>

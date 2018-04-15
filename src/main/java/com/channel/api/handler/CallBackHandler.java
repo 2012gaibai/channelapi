@@ -37,7 +37,14 @@ public class CallBackHandler {
             return Constants.CALL_BACK_FAIL;
         }
 
-        CallBackDto rsp= GsonUtils.jsonToPojo(result.getBody(),CallBackDto.class);
+        CallBackDto rsp;
+        try {
+            rsp= GsonUtils.jsonToPojo(result.getBody(),CallBackDto.class);
+
+        }catch (Exception e){
+            logger.warn("json解析失败:"+result.getBody(),e);
+            return Constants.CALL_BACK_FAIL;
+        }
 
         return rsp.getStatus()==1?Constants.CALL_BACK_SUC:Constants.CALL_BACK_FAIL;
     }

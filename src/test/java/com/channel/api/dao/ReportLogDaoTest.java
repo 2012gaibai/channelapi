@@ -1,6 +1,8 @@
 package com.channel.api.dao;
 
+import com.channel.api.entity.CallbackLog;
 import com.channel.api.entity.ReportLog;
+import com.channel.api.util.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,32 @@ public class ReportLogDaoTest {
 
     @Autowired
     private ReportLogDao reportLogDao;
+    @Autowired
+    private CallbackDao callbackDao;
+
+    @Test
+    public void findList() throws Exception {
+        CallbackLog log=new CallbackLog();
+        log.setIsBalance(1);
+        log.setIsCall(0);
+
+        List<CallbackLog> list=callbackDao.findList(log, DateUtils.dayBefore2Date(-1),new Date(),0, 20);
+        for (CallbackLog goods : list) {
+            System.out.println(goods);
+        }
+        System.out.println("--------------------------");
+    }
+
+    @Test
+    public void update() throws Exception{
+        CallbackLog log=new CallbackLog();
+        log.setIdfa("1");
+        log.setAppCode("1");
+        log.setIsCall(1);
+        log.setIsFinish(1);
+        log.setUpdateTime(new Date());
+        callbackDao.updateStatus(log);
+    }
 
     @Test
     public void queryAll() throws Exception {
