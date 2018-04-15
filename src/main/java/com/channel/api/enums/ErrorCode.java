@@ -5,7 +5,10 @@ package com.channel.api.enums;
  */
 public enum ErrorCode {
     E200(200, "操作成功"),
-    E500(500, "系统错误");
+    E500(500, "系统错误"),
+
+    E601(601, "appId不存在"),
+    E602(602, "ref不存在");
 
     private int code;
     private String msg;

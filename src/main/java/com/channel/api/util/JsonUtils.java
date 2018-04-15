@@ -16,7 +16,7 @@ public class JsonUtils {
         try {
             jsonString = objectMapper.writeValueAsString(object);
         } catch (Exception e) {
-            logger.warn("json error:{}", e.getMessage());
+            logger.warn("obj toJson error", e);
         }
         return jsonString;
     }

@@ -1,5 +1,7 @@
 package com.channel.api.dto;
 
+import com.channel.api.enums.ErrorCode;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,24 @@ public class BaseResult<T> implements Serializable{
     private int code;
     private String msg;
     private T data;
+
+    public BaseResult() {
+    }
+
+    public BaseResult(int code) {
+        this.code = code;
+        this.msg = ErrorCode.get(code).getMsg();
+    }
+
+    public BaseResult(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public BaseResult(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
+    }
 
     public int getCode() {
         return code;

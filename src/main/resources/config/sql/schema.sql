@@ -21,7 +21,7 @@ CREATE TABLE app_info(
 `app_name` VARCHAR(100) NOT NULL COMMENT '应用名',
 `token` VARCHAR(50) COMMENT '校验token',
 `come_from` VARCHAR(50)  COMMENT '渠道标识',
-`callback_url` VARCHAR(50) COMMENT '回调地址',
+`callback_url` VARCHAR(500) COMMENT '回调地址',
 `other_params` VARCHAR(200) COMMENT '其他参数',
 `status` TINYINT NOT NULL DEFAULT 0 COMMENT '应用开关',
 PRIMARY KEY (`app_code`)
@@ -34,7 +34,7 @@ CREATE TABLE report_log(
 `adverter_code` VARCHAR(100)  COMMENT '广告商标识',
 `app_code` VARCHAR(50) NOT NULL COMMENT '应用标识',
 `click_id` VARCHAR(50)  COMMENT '广告点击id',
-`callback` VARCHAR(100) COMMENT '回调地址',
+`callback` VARCHAR(500) COMMENT '回调地址',
 `report_time` DATETIME COMMENT '上报时间',
 PRIMARY KEY (`idfa`,`app_code`)
 )ENGINE=INNODB  DEFAULT CHARSET=utf8 COMMENT='上报记录表';
@@ -45,8 +45,10 @@ CREATE TABLE callback_log(
   `adverter_code` VARCHAR(100)  COMMENT '广告商标识',
   `app_code` VARCHAR(50) NOT NULL COMMENT '应用标识',
   `ip` VARCHAR(50) COMMENT 'ip地址',
-  `user_agent` VARCHAR(50) COMMENT 'user agent',
+  `callback` VARCHAR(500) COMMENT '回调地址',
   `click_id` VARCHAR(50)  COMMENT '广告点击id',
+  `is_call` TINYINT COMMENT '是否已回调,0:否，1:是',
+  `is_finish` TINYINT COMMENT '回调是否成功,0:不成功，1：成功',
   `is_balance` TINYINT COMMENT '是否需要结算,0表示不需要，1表示需要',
   `create_time` DATETIME COMMENT '上报时间',
   PRIMARY KEY (`idfa`,`app_code`)

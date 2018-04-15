@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1、配置数据库相关参数-->
+    <context:property-placeholder location="classpath:config/properties/config-http.properties" ignore-unresolvable="true"/>
+
+
+    <!-- 配置RestTemplate -->
+    <bean id="httpClintPool" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+        <property name="defaultMaxPerRoute" value="${HTTP.MAX.PER.ROUTE}"/>
+        <property name="maxTotal" value="${HTTP.MAX.TOTAL}"/>
+    </bean>
+    <!--Http client Factory-->
+    <bean id="httpClientFactory" class="com.channel.api.tool.MyHttpComponentsClientHttpRequestFactory">
+        <property name="connectTimeout" value="${HTTP.CONNECT.TIMEOUT}"/>
+        <property name="readTimeout" value="${HTTP.READ.TIMEOUT}"/>
+        <constructor-arg ref="httpClintPool"/>
+    </bean>
+
+    <!--RestTemplate-->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+    </bean>
+
+    <!-- ThreadPool -->
+    <bean id="threadReportUnit" class="com.channel.api.util.ThreadPoolHelper" destroy-method="destroy" init-method="init"/>
+
+</beans>

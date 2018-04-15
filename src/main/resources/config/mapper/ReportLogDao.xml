@@ -10,8 +10,8 @@
 	</select>
 
 	<insert id="insert" parameterType="ReportLog">
-		INSERT INTO report_log(idfa, adverter_code, app_code, click_id, report_time)
-		VALUES (#{idfa}, #{adverterCode}, #{appCode}, #{clickId}, #{reportTime})
+		INSERT INTO report_log(idfa, adverter_code, app_code, click_id,callback, report_time)
+		VALUES (#{idfa}, #{adverterCode}, #{appCode}, #{clickId},#{callback}, #{reportTime})
 	</insert>
 
 

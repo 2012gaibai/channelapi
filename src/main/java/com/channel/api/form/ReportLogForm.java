@@ -9,8 +9,11 @@ public class ReportLogForm {
 
     @NotEmpty
     private String idfa;
+    @NotEmpty
     private String ref;
+    @NotEmpty
     private String callback;
+    @NotEmpty
     private String appid;
     private String ip;
 

@@ -11,6 +11,7 @@ public class ReportLog {
     private String adverterCode;
     private String appCode;
     private String clickId;
+    private String callback;
     private Date reportTime;
 
     public String getIdfa() {
@@ -53,6 +54,14 @@ public class ReportLog {
         this.reportTime = reportTime;
     }
 
+    public String getCallback() {
+        return callback;
+    }
+
+    public void setCallback(String callback) {
+        this.callback = callback;
+    }
+
     @Override
     public String toString() {
         return "ReportLog{" +
@@ -60,6 +69,7 @@ public class ReportLog {
                 ", adverterCode='" + adverterCode + '\'' +
                 ", appCode='" + appCode + '\'' +
                 ", clickId='" + clickId + '\'' +
+                ", callback='" + callback + '\'' +
                 ", reportTime=" + reportTime +
                 '}';
     }
