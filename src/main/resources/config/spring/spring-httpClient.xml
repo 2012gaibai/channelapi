@@ -6,7 +6,6 @@
     <!--1、配置数据库相关参数-->
     <context:property-placeholder location="classpath:config/properties/config-http.properties" ignore-unresolvable="true"/>
 
-
     <!-- 配置RestTemplate -->
     <bean id="httpClintPool" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
         <property name="defaultMaxPerRoute" value="${HTTP.MAX.PER.ROUTE}"/>
