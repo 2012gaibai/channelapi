@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ReportLogDao {
 
-    int insert(ReportLog log);
+    int insert(@Param("log") ReportLog log,@Param("tableName") String tableName);
 
     List<ReportLog> queryAll(@Param("offset") int offset, @Param("limit") int limit);
 

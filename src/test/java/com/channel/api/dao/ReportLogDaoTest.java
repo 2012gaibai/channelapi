@@ -70,7 +70,7 @@ public class ReportLogDaoTest {
         log.setAdverterCode("dsvdsv");
         log.setReportTime(new Date());
         try {
-            int i=reportLogDao.insert(log);
+            int i=reportLogDao.insert(log,"report_log");
             System.out.println("======="+i);
         }catch (DuplicateKeyException e){
             System.out.println("主键冲突");

@@ -28,7 +28,7 @@ public class ReportLogServiceImpl implements ReportLogService {
     public int insert(ReportLog log) {
         int count;
         try {
-            count=reportLogDao.insert(log);
+            count=reportLogDao.insert(log,"report_log");
         } catch(DuplicateKeyException e){
             LOG.error("主键冲突:"+log.toString());
             return 0;

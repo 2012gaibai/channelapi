@@ -17,9 +17,9 @@
 		limit #{offset},#{limit}
 	</select>
 
-	<insert id="insert" parameterType="reportLog">
-		INSERT INTO report_log(idfa, adverter_code, app_code, click_id,callback, report_time)
-		VALUES (#{idfa}, #{adverterCode}, #{appCode}, #{clickId},#{callback}, #{reportTime})
+	<insert id="insert">
+		INSERT INTO ${tableName}(idfa, adverter_code, app_code, click_id,callback, report_time)
+		VALUES (#{log.idfa}, #{log.adverterCode}, #{log.appCode}, #{log.clickId},#{log.callback}, #{log.reportTime})
 	</insert>
 
 
